@@ -80,6 +80,23 @@ Route::get('/delete', function(){
 
 });
 
+Route::get('/acessor', function(){
+    $post = Post::first();
+    return $post->title_and_body;
+});
+
+Route::get('/mutaturs', function(){
+    $user = User::first();
+    $post = Post::create([
+        'user_id' => $user->id,
+        'title' => 'olá mundo',
+        'body' => Str::random(20),
+        'date' => now()
+    ]);
+
+    return $post;
+});
+
 Route::get('/', function () {
     return view('welcome');
 });
